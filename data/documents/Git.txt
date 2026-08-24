@@ -1,0 +1,15 @@
+Git is a distributed version control system used to track changes in source code and other files.
+
+A Git repository contains the history of a project. Developers use repositories to manage versions of their work.
+
+A commit records a set of changes in the repository. Developers can create commits as they complete meaningful changes.
+
+A branch is an independent line of development. Branches allow developers to work on features or fixes without immediately changing the main branch.
+
+The git clone command is used to create a local copy of a remote repository.
+
+The git add command stages changes for a commit. The git commit command records staged changes in the repository history.
+
+The git push command uploads local commits to a remote repository. The git pull command retrieves changes from a remote repository and integrates them into the local project.
+
+Git is useful for collaboration because developers can track changes, create branches, review work, and return to earlier versions when necessary.

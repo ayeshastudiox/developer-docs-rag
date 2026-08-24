@@ -1,0 +1,23 @@
+SQL stands for Structured Query Language. It is commonly used to communicate with relational database systems.
+
+A relational database stores information in tables. A table contains rows and columns. Each row generally represents a record, while each column represents an attribute of that record.
+
+The SELECT statement is used to retrieve data from a database.
+
+The INSERT statement is used to add new records.
+
+The UPDATE statement is used to modify existing records.
+
+The DELETE statement is used to remove records.
+
+A WHERE clause can be used to filter records based on a condition.
+
+A primary key is used to uniquely identify records in a table.
+
+A foreign key is used to establish a relationship between records in different tables.
+
+A JOIN can combine related information from multiple tables. Common join types include INNER JOIN, LEFT JOIN, RIGHT JOIN, and FULL OUTER JOIN depending on the database system.
+
+Database normalization is a process used to organize relational data and reduce unnecessary duplication.
+
+

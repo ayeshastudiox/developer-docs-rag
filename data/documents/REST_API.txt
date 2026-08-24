@@ -1,0 +1,13 @@
+A REST API is an application programming interface that follows principles commonly associated with Representational State Transfer.
+
+REST APIs allow clients and servers to communicate using HTTP. Resources are typically represented through URLs or endpoints.
+
+HTTP methods describe the type of operation a client wants to perform. GET is commonly used to retrieve data. POST is commonly used to submit or create data. PUT is commonly used to update a resource. DELETE is commonly used to remove a resource.
+
+HTTP status codes communicate the result of a request. A 200 status code generally indicates a successful request. A 201 status code commonly indicates that a resource was successfully created. A 400 status code indicates a client-side request error. A 404 status code means that the requested resource was not found. A 500 status code indicates a server-side error.
+
+JSON is commonly used as the format for data exchanged between REST API clients and servers.
+
+An API request may contain a URL, HTTP method, headers, query parameters, path parameters, and a request body.
+
+A REST API separates the client from the server. This separation allows different applications to communicate with the same backend service.

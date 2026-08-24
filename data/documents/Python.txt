@@ -1,0 +1,15 @@
+Python is a high-level, general-purpose programming language known for its readable syntax and broad range of applications. Python programs are commonly used for web development, automation, data analysis, artificial intelligence, machine learning, and scripting.
+
+Variables in Python are created by assigning a value to a name. Python supports common data types such as strings, integers, floating-point numbers, lists, tuples, dictionaries, sets, and booleans.
+
+A list is an ordered and mutable collection of values. A tuple is an ordered collection that cannot normally be modified after creation. A dictionary stores information using key-value pairs.
+
+Functions are reusable blocks of code that perform a particular task. A function can accept parameters and return a result.
+
+Python supports conditional statements such as if, elif, and else. It also provides loops such as for and while for repeating operations.
+
+Modules allow Python code to be organized into reusable files. A package is a collection of related Python modules.
+
+Exceptions are runtime events that can interrupt normal program execution. Python provides try, except, else, and finally blocks for handling exceptions.
+
+Python uses indentation to define blocks of code. Correct indentation is therefore an important part of Python syntax.
