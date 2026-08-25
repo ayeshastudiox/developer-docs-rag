@@ -319,45 +319,47 @@
         height: 38px;
       }
     }
-    /* TARGET MOBILE ONLY - Desktop will remain untouched */
-@media (max-width: 600px) {
-  /* Fits the entire app perfectly within the mobile screen height without overflow */
+    @media (max-width: 600px) {
+  /* Allow natural viewport scrolling while keeping elements inline */
   html, body {
-    height: 100% !important;
-    overflow: hidden !important;
-    margin: 0 !important;
-    padding: 0 !important;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
   }
 
-  /* Shrinks the container to lock inside the visible mobile screen */
+  /* Reset forced heights so the container flows naturally */
   .container, .chat-card, main {
-    height: 100dvh !important; /* Uses dynamic mobile viewport height */
-    max-height: 100dvh !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
     width: 100% !important;
     max-width: 100% !important;
     border-radius: 0 !important;
     margin: 0 !important;
     display: flex !important;
     flex-direction: column !important;
+    justify-content: space-between !important;
   }
 
-  /* Takes up leftover space between header and footer so no blank gaps form */
+  /* Force chat message box to handle scrolling inside a constrained space */
   .chat-body, .messages-container {
-    flex: 1 !important;
+    flex: 1 1 auto !important;
+    max-height: calc(100vh - 180px) !important;
     overflow-y: auto !important;
-    height: auto !important;
+    padding: 12px !important;
   }
 
-  /* Keeps quick prompts horizontal without pushing the layout down */
+  /* Compact quick prompts directly above input */
   .suggestions, .quick-prompts {
     flex-shrink: 0 !important;
+    padding: 6px 12px !important;
   }
 
-  /* Locks the input box at the bottom of the screen */
+  /* Ensure input bar stays fully pinned at bottom of container */
   .input-container, .chat-footer {
     flex-shrink: 0 !important;
-    position: sticky !important;
-    bottom: 0 !important;
+    padding: 8px 12px 16px 12px !important;
+    background: #ffffff !important;
   }
 }
   </style>
