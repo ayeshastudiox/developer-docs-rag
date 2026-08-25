@@ -2,19 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Developer Docs RAG // Smart Assistant</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-gradient: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
       --glass-bg: rgba(255, 255, 255, 0.85);
-      --glass-border: rgba(255, 255, 255, 0.6);
+      --glass-border: rgba(255, 255, 255, 0.7);
       --primary-purple: #8a2be2;
       --primary-gradient: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
       --text-dark: #2b2d42;
       --text-muted: #6c757d;
-      --card-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+      --card-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
     }
 
     * { 
@@ -27,18 +27,19 @@
     body {
       background: var(--bg-gradient);
       min-height: 100vh;
+      min-height: -webkit-fill-available;
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 16px;
     }
 
-    /* Main Container */
+    /* Main App Card Window */
     .app-card {
       width: 100%;
-      max-width: 480px;
-      height: 82vh;
-      max-height: 750px;
+      max-width: 480px; /* Modern compact mobile & desktop card width */
+      height: 90vh;
+      max-height: 720px;
       background: var(--glass-bg);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
@@ -50,14 +51,14 @@
       overflow: hidden;
     }
 
-    /* Header */
+    /* Top Bar Header */
     .header {
       padding: 16px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(255, 255, 255, 0.5);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.4);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
       flex-shrink: 0;
     }
 
@@ -77,14 +78,15 @@
       justify-content: center;
       font-weight: 700;
       color: white;
-      font-size: 0.85rem;
-      box-shadow: 0 4px 12px rgba(138, 43, 226, 0.2);
+      font-size: 0.9rem;
+      box-shadow: 0 4px 12px rgba(138, 43, 226, 0.25);
     }
 
     .header-title h2 { 
       font-size: 1rem; 
       color: var(--text-dark); 
       font-weight: 700; 
+      line-height: 1.2;
     }
     
     .header-title p { 
@@ -94,41 +96,47 @@
     }
 
     .ai-badge {
-      background: rgba(138, 43, 226, 0.1);
+      background: rgba(138, 43, 226, 0.12);
       color: var(--primary-purple);
-      padding: 6px 12px;
+      padding: 6px 14px;
       border-radius: 20px;
-      font-size: 0.75rem;
+      font-size: 0.78rem;
       font-weight: 600;
       display: flex;
       align-items: center;
       gap: 4px;
+      white-space: nowrap;
     }
 
-    /* Chat Area */
+    .ai-badge::before {
+      content: '✦';
+      font-size: 0.85rem;
+    }
+
+    /* Chat Messages Stream Area */
     .chat-area {
       flex: 1;
-      padding: 20px;
+      padding: 20px 16px;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
       gap: 14px;
     }
 
-    /* Scrollbar styling */
     .chat-area::-webkit-scrollbar {
-      width: 5px;
+      width: 4px;
     }
+
     .chat-area::-webkit-scrollbar-thumb {
-      background: rgba(0, 0, 0, 0.1);
-      border-radius: 10px;
+      background: rgba(138, 43, 226, 0.2);
+      border-radius: 4px;
     }
 
     .message-row {
       display: flex;
       gap: 10px;
       max-width: 85%;
-      animation: fadeInUp 0.25s ease;
+      animation: fadeInUp 0.25s ease forwards;
     }
 
     .message-row.user {
@@ -148,9 +156,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.8rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      font-size: 0.85rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
       flex-shrink: 0;
+      color: var(--primary-purple);
     }
 
     .msg-bubble {
@@ -158,8 +167,8 @@
       border-radius: 20px;
       font-size: 0.9rem;
       line-height: 1.5;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
       word-break: break-word;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
     }
 
     .user .msg-bubble {
@@ -172,16 +181,15 @@
       background: white;
       color: var(--text-dark);
       border-bottom-left-radius: 4px;
-      border: 1px solid rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.9);
     }
 
-    /* Horizontal Quick Suggestions */
+    /* Quick Suggestions Bar */
     .suggestions {
       display: flex;
       gap: 8px;
-      padding: 8px 20px;
+      padding: 6px 16px 10px;
       overflow-x: auto;
-      white-space: nowrap;
       flex-shrink: 0;
       -webkit-overflow-scrolling: touch;
     }
@@ -191,38 +199,42 @@
     }
 
     .chip {
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.85);
       border: 1px solid rgba(255, 255, 255, 0.9);
-      padding: 6px 14px;
-      border-radius: 18px;
-      font-size: 0.8rem;
+      padding: 7px 14px;
+      border-radius: 20px;
+      font-size: 0.78rem;
       color: var(--text-dark);
       font-weight: 600;
       cursor: pointer;
-      flex-shrink: 0;
+      white-space: nowrap;
       transition: all 0.2s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+      flex-shrink: 0;
     }
 
-    .chip:active, .chip:hover {
+    .chip:hover, .chip:active {
       background: white;
       transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(138, 43, 226, 0.15);
     }
 
-    /* Input Bar */
+    /* Input Footer Area */
     .input-wrapper {
-      padding: 12px 20px 20px;
+      padding: 12px 16px 16px;
       background: rgba(255, 255, 255, 0.3);
+      border-top: 1px solid rgba(255, 255, 255, 0.4);
       flex-shrink: 0;
     }
 
     .input-box {
       background: white;
-      border-radius: 25px;
+      border-radius: 28px;
       padding: 4px 6px 4px 18px;
       display: flex;
       align-items: center;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.9);
     }
 
     .input-box input {
@@ -232,6 +244,7 @@
       font-size: 0.9rem;
       color: var(--text-dark);
       background: transparent;
+      padding: 8px 0;
     }
 
     .send-btn {
@@ -246,18 +259,21 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: transform 0.2s ease;
+      transition: transform 0.2s ease, background 0.2s ease;
+      box-shadow: 0 4px 10px rgba(138, 43, 226, 0.3);
+      flex-shrink: 0;
     }
 
-    .send-btn:active {
-      transform: scale(0.95);
+    .send-btn:hover {
+      transform: scale(1.05);
+      background: #7b2cbf;
     }
 
-    /* Typing Animation */
+    /* Typing Dots Animation */
     .typing-dots span {
       display: inline-block;
-      width: 5px;
-      height: 5px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background: var(--text-muted);
       margin: 0 2px;
@@ -276,8 +292,8 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Fullscreen Mobile View */
-    @media (max-width: 600px) {
+    /* Mobile Specific Full-Height Adjustments */
+    @media (max-width: 480px) {
       body {
         padding: 0;
       }
@@ -302,7 +318,7 @@
         <p>Docs & Knowledge Base</p>
       </div>
     </div>
-    <div class="ai-badge">✦ Smart Chat</div>
+    <div class="ai-badge">Smart Chat</div>
   </div>
 
   <!-- Messages Output -->
@@ -376,7 +392,7 @@
     } catch (err) {
       const botMsgElement = document.getElementById(loadingId);
       if (botMsgElement) {
-        botMsgElement.querySelector('.msg-bubble').textContent = "Connection error. Ensure server is online.";
+        botMsgElement.querySelector('.msg-bubble').textContent = "Connection error. Ensure Uvicorn is running.";
       }
     }
 
