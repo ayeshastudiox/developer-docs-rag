@@ -319,6 +319,36 @@
         height: 38px;
       }
     }
+    /* MOBILE-ONLY FIX (Does not touch Desktop) */
+@media (max-width: 600px) {
+  body {
+    padding: 8px !important;
+    align-items: flex-start !important; /* Prevents vertical stretching */
+  }
+
+  /* Compact the container height for mobile */
+  .chat-container, .container, main, .chat-card {
+    height: 82vh !important; /* Reduces vertical height */
+    max-height: 600px !important; /* Caps max height to eliminate giant empty space */
+    border-radius: 20px !important;
+    margin: auto 0 !important;
+  }
+
+  /* Reduce internal padding */
+  .chat-body, .messages-container {
+    padding: 12px !important;
+  }
+
+  /* Compact header height */
+  .chat-header, header {
+    padding: 10px 14px !important;
+  }
+
+  /* Compact suggestion buttons */
+  .suggestions, .quick-prompts, .suggestion-chips {
+    padding: 6px 12px !important;
+  }
+}
   </style>
 </head>
 <body>
