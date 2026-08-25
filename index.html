@@ -320,48 +320,86 @@
       }
     }
     @media (max-width: 600px) {
-  /* Let the page scroll naturally on phones */
+  /* Remove outer margins & page background body gradient on mobile */
   html, body {
-    height: auto !important;
-    min-height: 100% !important;
-    overflow-y: auto !important;
-    padding: 8px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 100% !important;
+    background: #f4f6fc !important;
+    overflow: hidden !important;
   }
 
-  /* Reset the card wrapper so it doesn't stretch artificially */
+  /* Make the main app container stretch full screen like a native app */
   .container, .chat-card, main {
-    width: 100% !important;
+    width: 100vw !important;
+    height: 100dvh !important;
     max-width: 100% !important;
-    height: auto !important;
-    min-height: auto !important;
-    margin: 0 auto !important;
-    border-radius: 16px !important;
-  }
-
-  /* Keep the message space proportional without pushing content out of view */
-  .chat-body, .messages-container {
-    min-height: 300px !important;
-    max-height: 50vh !important;
-    overflow-y: auto !important;
-    padding: 12px !important;
-  }
-
-  /* Clean up prompt buttons wrapping */
-  .suggestions, .quick-prompts {
+    max-height: 100% !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
     display: flex !important;
-    flex-wrap: wrap !important;
-    gap: 6px !important;
-    padding: 8px !important;
+    flex-direction: column !important;
+    background: #f4f6fc !important;
+  }
+
+  /* Clean top navigation header */
+  .chat-header, header {
+    padding: 16px 20px !important;
+    background: #ffffff !important;
+    border-bottom: 1px solid #eef2f6 !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Scrollable chat body taking up all remaining vertical space */
+  .chat-body, .messages-container {
+    flex: 1 1 auto !important;
+    overflow-y: auto !important;
+    padding: 16px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+
+  /* Stack suggestion chips vertically on the left as pill buttons */
+  .suggestions, .quick-prompts, .suggestion-chips {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+    padding: 8px 16px 12px 16px !important;
+    background: transparent !important;
+    border: none !important;
+    flex-shrink: 0 !important;
   }
 
   .suggestion-btn, .chip {
-    font-size: 12px !important;
-    padding: 6px 10px !important;
+    width: auto !important;
+    max-width: 80% !important;
+    padding: 10px 18px !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    border-radius: 24px !important;
+    background: #ffffff !important;
+    color: #1e293b !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04) !important;
+    border: none !important;
   }
 
-  /* Input container styling */
+  /* Floating modern pill input box pinned at bottom */
   .input-container, .chat-footer {
-    padding: 10px !important;
+    padding: 12px 16px 24px 16px !important;
+    background: transparent !important;
+    border: none !important;
+    flex-shrink: 0 !important;
+  }
+
+  .input-container input, .chat-footer input {
+    background: #ffffff !important;
+    border-radius: 30px !important;
+    padding: 14px 20px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
   }
 }
   </style>
